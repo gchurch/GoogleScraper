@@ -21,9 +21,9 @@ namespace Search.Controllers
         }
 
         [HttpGet("string")]
-        public async Task<ActionResult<string>> Search(string keywords, string url)
+        public ActionResult<string> Search(string keywords, string url)
         {
-            string response = await _searchService.MakeGoogleRequest();
+            string response =  _searchService.GetUrls();
             return Ok(response);
         }
     }
