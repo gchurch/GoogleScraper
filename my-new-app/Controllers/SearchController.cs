@@ -18,9 +18,9 @@ namespace Search.Controllers
         }
 
         [HttpGet("string")]
-        public ActionResult<string> GetString()
+        public ActionResult<string> GetString(string keywords, string url)
         {
-            return Ok("hello");
+            return Ok(keywords);
         }
     }
 }

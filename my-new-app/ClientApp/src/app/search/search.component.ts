@@ -16,7 +16,14 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.intResponse$ = this.http.get<number>(this.baseUrl + "api/search/int");
-    this.stringResponse$ = this.http.get(this.baseUrl + "api/search/string", {responseType: 'text'});
+    this.stringResponse$ = this.http.get(this.baseUrl + "api/search/string", 
+    {
+      responseType: 'text',
+      params: {
+        keywords: "land registry searches",
+        url: "www.infotrack.com"
+      }
+    });
   }
 
 }
