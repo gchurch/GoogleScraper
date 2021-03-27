@@ -29,11 +29,7 @@ namespace my_new_app.Services
             string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
             List<string> programmerLinks = new List<string>();
 
-            var options = new ChromeOptions()
-            {
-                BinaryLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-            };
-
+            var options = new ChromeOptions(){};
             options.AddArguments(new List<string>() { "headless", "disable-gpu" });
             var browser = new ChromeDriver(options);
             browser.Navigate().GoToUrl(fullUrl);
