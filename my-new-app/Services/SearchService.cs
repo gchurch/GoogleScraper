@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,24 @@ namespace my_new_app.Services
 {
     public class SearchService : ISearchService
     {
+
+        private ChromeDriver _browser;
+
+        public SearchService()
+        {
+            _browser = CreateBrowser();
+        }
+
+        private ChromeDriver CreateBrowser()
+        {
+            var options = new ChromeOptions() { };
+            options.AddArguments(new List<string>() { "headless", "disable-gpu" });
+            var browser = new ChromeDriver(options);
+            return browser;
+        }
+
         public string GetUrls()
         {
-            //string url = "https://www.google.co.uk/search?num=100&q=land+registry+search";
-            //HttpClient client = new HttpClient();
-            //string responseBody = await client.GetStringAsync(url);
             List<string> urls = GetUrlsFromGoogleSearch();
             string response = "";
             foreach (string url in urls)
@@ -23,18 +37,20 @@ namespace my_new_app.Services
             return response;
         }
 
-
         private List<string> GetUrlsFromGoogleSearch()
         {
             string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
-            List<string> programmerLinks = new List<string>();
 
-            var options = new ChromeOptions(){};
-            options.AddArguments(new List<string>() { "headless", "disable-gpu" });
-            var browser = new ChromeDriver(options);
-            browser.Navigate().GoToUrl(fullUrl);
+            _browser.Navigate().GoToUrl(fullUrl);
 
-            var cites = browser.FindElementsByTagName("cite");
+            var urls = GetAllUrlResults();
+
+            return urls;
+        }
+
+        private List<string> GetAllUrlResults()
+        {
+            var cites = _browser.FindElementsByTagName("cite");
             var urls = new List<string>();
             foreach (var cite in cites)
             {
@@ -43,12 +59,6 @@ namespace my_new_app.Services
                     urls.Add(cite.Text);
                 }
             }
-
-            foreach (var url in urls)
-            {
-                Console.WriteLine(url);
-            }
-            Console.WriteLine("Total number: " + urls.Count);
             return urls;
         }
     }
