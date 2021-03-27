@@ -9,12 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
 
-  public response$: Observable<number>;
+  public intResponse$: Observable<number>;
+  public stringResponse$;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   ngOnInit() {
-    this.response$ = this.http.get<number>(this.baseUrl + "api/search");
+    this.intResponse$ = this.http.get<number>(this.baseUrl + "api/search/int");
+    this.stringResponse$ = this.http.get(this.baseUrl + "api/search/string", {responseType: 'text'});
   }
 
 }

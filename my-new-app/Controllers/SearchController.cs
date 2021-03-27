@@ -11,10 +11,16 @@ namespace Search.Controllers
     [ApiController]
     public class SearchController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<int> Get()
+        [HttpGet("int")]
+        public ActionResult<int> GetInt()
         {
             return Ok(200);
+        }
+
+        [HttpGet("string")]
+        public ActionResult<string> GetString()
+        {
+            return Ok("hello");
         }
     }
 }
