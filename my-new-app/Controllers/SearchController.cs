@@ -20,7 +20,7 @@ namespace Search.Controllers
         [HttpGet("string")]
         public ActionResult<string> GetString(string keywords, string url)
         {
-            return Ok(keywords);
+            return Ok(keywords + " " + url);
         }
     }
 }

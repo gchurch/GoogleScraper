@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,19 +12,29 @@ export class SearchComponent implements OnInit {
 
   public intResponse$: Observable<number>;
   public stringResponse$;
+  public searchForm: FormGroup;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   ngOnInit() {
-    this.intResponse$ = this.http.get<number>(this.baseUrl + "api/search/int");
+    this.createSearchForm();
+  }
+
+  private createSearchForm(): void {
+    this.searchForm = new FormGroup({
+      keywords: new FormControl('', Validators.required),
+      url: new FormControl('', Validators.required)
+    });
+  }
+
+  public onSearch(): void {
     this.stringResponse$ = this.http.get(this.baseUrl + "api/search/string", 
     {
       responseType: 'text',
       params: {
-        keywords: "land registry searches",
-        url: "www.infotrack.com"
+        keywords: this.searchForm.value.keywords,
+        url: this.searchForm.value.url
       }
     });
   }
-
 }
