@@ -1,0 +1,9 @@
+<p>search works!</p>
+
+<div *ngIf="(response$ | async) as response; else loading">
+    <p>response from server: {{response}}</p>
+</div>
+
+<ng-template #loading>
+    Loading...
+</ng-template>

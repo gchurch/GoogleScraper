@@ -1,6 +1,6 @@
 using System;
 
-namespace my_new_app
+namespace Search
 {
     public class WeatherForecast
     {
