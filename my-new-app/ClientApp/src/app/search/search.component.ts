@@ -22,8 +22,8 @@ export class SearchComponent implements OnInit {
 
   private createSearchForm(): void {
     this.searchForm = new FormGroup({
-      keywords: new FormControl('', Validators.required),
-      url: new FormControl('', Validators.required)
+      keywords: new FormControl('land registry searches', Validators.required),
+      url: new FormControl('www.infotrack.co.uk', Validators.required)
     });
   }
 

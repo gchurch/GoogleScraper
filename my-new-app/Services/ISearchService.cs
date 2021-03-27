@@ -7,6 +7,6 @@ namespace my_new_app.Services
 {
     public interface ISearchService
     {
-        public string GetUrls();
+        public string GetUrlPositions(string keywords, string url);
     }
 }

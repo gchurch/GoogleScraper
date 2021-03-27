@@ -26,15 +26,25 @@ namespace my_new_app.Services
             return browser;
         }
 
-        public string GetUrls()
+        public string GetUrlPositions(string keywords, string url)
         {
-            List<string> urls = GetUrlsFromGoogleSearch();
-            string response = "";
-            foreach (string url in urls)
+            List<string> resultUrls = GetUrlsFromGoogleSearch();
+            string positions = "";
+            for(int i = 0; i < resultUrls.Count; i++)
             {
-                response += (url + "\n");
+                if(resultUrls[i].Contains(url))
+                {
+                    if(positions == "")
+                    {
+                        positions += i;
+                    }
+                    else
+                    {
+                        positions += (", " + i);
+                    }
+                }
             }
-            return response;
+            return positions;
         }
 
         private List<string> GetUrlsFromGoogleSearch()

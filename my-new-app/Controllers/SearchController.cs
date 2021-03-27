@@ -23,7 +23,7 @@ namespace Search.Controllers
         [HttpGet("string")]
         public ActionResult<string> Search(string keywords, string url)
         {
-            string response =  _searchService.GetUrls();
+            string response =  _searchService.GetUrlPositions(keywords, url);
             return Ok(response);
         }
     }
