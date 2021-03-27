@@ -7,5 +7,6 @@ namespace my_new_app.Services
 {
     public interface ISearchService
     {
+        public Task<string> MakeGoogleRequest();
     }
 }

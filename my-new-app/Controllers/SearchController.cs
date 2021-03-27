@@ -20,16 +20,11 @@ namespace Search.Controllers
             _searchService = searchService;
         }
 
-        [HttpGet("int")]
-        public ActionResult<int> GetInt()
-        {
-            return Ok(200);
-        }
-
         [HttpGet("string")]
-        public ActionResult<string> GetString(string keywords, string url)
+        public async Task<ActionResult<string>> Search(string keywords, string url)
         {
-            return Ok(keywords + " " + url);
+            string response = await _searchService.MakeGoogleRequest();
+            return Ok(response);
         }
     }
 }
