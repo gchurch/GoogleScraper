@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
   public onSearch(): void {
     console.log("Request sent");
     this.firstSearchSubmitted = true;
-    this.searchForm.value.keywords = "beep";
     this.searchResult$ = this.http.get(
       this.baseUrl + "api/search/string", 
       {

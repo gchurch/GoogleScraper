@@ -32,8 +32,16 @@ namespace Search.Services
 
         private void MakeGoogleSearch(string keywords)
         {
-            string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
+            string fullUrl = CreateSearchUrl(keywords);
+            Console.WriteLine(fullUrl);
             _browserDriver.Navigate().GoToUrl(fullUrl);
+        }
+
+        private string CreateSearchUrl(string keywords)
+        {
+            string keywordsWithSpacesReplacedByPluses = keywords.Replace(" ", "+");
+            string fullUrl = "https://www.google.co.uk/search?num=100&q=" + keywordsWithSpacesReplacedByPluses;
+            return fullUrl;
         }
 
         private List<string> ScrapeUrlResultsFromPage()
