@@ -16,11 +16,21 @@ namespace UrlSearch.Services
             CreateBrowserDriver();
         }
 
+        ~GoogleSearchService()
+        {
+            QuitBrowserDriver();
+        }
+
         private void CreateBrowserDriver()
         {
             var options = new ChromeOptions() { };
             options.AddArguments(new List<string>() { "headless", "disable-gpu" });
             _browserDriver = new ChromeDriver(options);
+        }
+
+        private void QuitBrowserDriver()
+        {
+            _browserDriver.Quit();
         }
 
         public List<string> GetUrlsFromGoogleSearch(string keywords)
