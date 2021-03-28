@@ -40,20 +40,6 @@ namespace UnitTests
         public void GetUrlPositions_GivenUrlPresentMultipleTimesInList_ShouldReturnCommaSeparatedPositions()
         {
             // Arrange
-            string url = "www.twitter.com";
-
-            // Act
-            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
-
-            // Assert
-            Assert.AreEqual("4", positions);
-        }
-
-
-        [TestMethod]
-        public void GetUrlPositions_GivenUrlPresentOnceInList_ShouldReturnSinglePositionWithNoComma()
-        {
-            // Arrange
             string url = "www.infotrack.co.uk";
 
             // Act
@@ -61,6 +47,20 @@ namespace UnitTests
 
             // Assert
             Assert.AreEqual("2, 6, 7", positions);
+        }
+
+
+        [TestMethod]
+        public void GetUrlPositions_GivenUrlPresentOnceInList_ShouldReturnSinglePositionWithNoComma()
+        {
+            // Arrange
+            string url = "www.twitter.com";
+
+            // Act
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
+
+            // Assert
+            Assert.AreEqual("4", positions);
         }
 
         [TestMethod]
