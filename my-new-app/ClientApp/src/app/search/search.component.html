@@ -1,17 +1,17 @@
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-    <p>Keywords: <input type="text" formControlName="keywords"/></p>
+    <p>Google search phrase: <input type="text" formControlName="keywords"/></p>
     <p>URL: <input type="text" formControlName="url"/></p>
     <button type="submit" [disabled]="!searchForm.valid">Search</button>
 </form>
 
 <div>
     <div *ngIf="(searchResult$ | async) as result; else loading">
-        <p>Search result: {{result}}</p>
+        <p>In the first 100 search results, the given URL appears at positions: {{result}}</p>
     </div>
 
     <ng-template #loading>
         <p *ngIf="firstSearchSubmitted == true">
-            Fetching search result from the server... This may take a few seconds...
+            Fetching search results from the server... This may take a few seconds...
         </p>
     </ng-template>
 </div>
