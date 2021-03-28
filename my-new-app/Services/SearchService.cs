@@ -36,13 +36,17 @@ namespace my_new_app.Services
                 {
                     if(positions == "")
                     {
-                        positions += i;
+                        positions += (i + 1);
                     }
                     else
                     {
-                        positions += (", " + i);
+                        positions += (", " + (i + 1));
                     }
                 }
+            }
+            if(positions == "")
+            {
+                return "0";
             }
             return positions;
         }
