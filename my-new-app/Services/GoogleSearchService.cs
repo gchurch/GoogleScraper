@@ -13,27 +13,27 @@ namespace Search.Services
 
         public GoogleSearchService()
         {
-            _browserDriver = CreateBrowserDriver();
+            CreateBrowserDriver();
         }
 
-        private ChromeDriver CreateBrowserDriver()
+        private void CreateBrowserDriver()
         {
             var options = new ChromeOptions() { };
             options.AddArguments(new List<string>() { "headless", "disable-gpu" });
-            var browser = new ChromeDriver(options);
-            return browser;
+            _browserDriver = new ChromeDriver(options);
         }
-
 
         public List<string> GetUrlsFromGoogleSearch(string keywords)
         {
-            string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
-
-            _browserDriver.Navigate().GoToUrl(fullUrl);
-
+            MakeGoogleSearch(keywords);
             var urls = ScrapeUrlResultsFromPage();
-
             return urls;
+        }
+
+        private void MakeGoogleSearch(string keywords)
+        {
+            string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
+            _browserDriver.Navigate().GoToUrl(fullUrl);
         }
 
         private List<string> ScrapeUrlResultsFromPage()
