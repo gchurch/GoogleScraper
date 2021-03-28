@@ -1,10 +1,10 @@
-# Url Search Tech Test
+# URL Search Tech Test
 
-I have completed the development project.
+I have completed the URL search project.
 
-The application I created is an ASP.NET Core Web API and front-end Angular SPA.
+The application I created is an ASP.NET Core Web API and front-end Angular SPA. In the UI, enter the search phrase and url you want to use and then press the search button.
 
 I have used .NET 5.0.
 
 To run:
-Press the start button in Visual Studio
+Open the solution in Visual Studio and press start.
