@@ -11,6 +11,7 @@ namespace UnitTests
         private List<string> searchResultUrls = new List<string>()
         {
             "www.facebook.com",
+            "www.infotrack.co.uk",
             "www.google.com",
             "www.twitter.com",
             "www.amazon.com",
@@ -30,7 +31,22 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void GetUrlPositions_GivenInfoTrackUrl()
+        public void GetUrlPositions_GivenUrlPresentMultipleTimesInList_ShouldReturnCommaSeparatedPositions()
+        {
+            // Arrange
+            SearchService searchService = CreateSearchServiceForTesting();
+
+            // Act
+            string url = "www.twitter.com";
+            string positions = searchService.GetUrlPositions(keywords, url);
+
+            // Assert
+            Assert.AreEqual("4", positions);
+        }
+
+
+        [TestMethod]
+        public void GetUrlPositions_GivenUrlPresentOnceInList_ShouldReturnSinglePositionWithNoComma()
         {
             // Arrange
             SearchService searchService = CreateSearchServiceForTesting();
@@ -40,7 +56,35 @@ namespace UnitTests
             string positions = searchService.GetUrlPositions(keywords, url);
 
             // Assert
-            Assert.AreEqual("5, 6", positions);
+            Assert.AreEqual("2, 6, 7", positions);
+        }
+
+        [TestMethod]
+        public void GetUrlPositions_GivenUrlNotPresentInList_ShouldReturn0()
+        {
+            // Arrange
+            SearchService searchService = CreateSearchServiceForTesting();
+
+            // Act
+            string url = "www.gov.uk";
+            string positions = searchService.GetUrlPositions(keywords, url);
+
+            // Assert
+            Assert.AreEqual("0", positions);
+        }
+
+        [TestMethod]
+        public void GetUrlPositions_GivenUrlThatIsFirstInTheList_ShouldReturn1Not0()
+        {
+            // Arrange
+            SearchService searchService = CreateSearchServiceForTesting();
+
+            // Act
+            string url = "www.facebook.com";
+            string positions = searchService.GetUrlPositions(keywords, url);
+
+            // Assert
+            Assert.AreEqual("1", positions);
         }
     }
 }
