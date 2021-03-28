@@ -8,3 +8,5 @@ I have used .NET 5.0.
 
 To run:
 Open the solution in Visual Studio and press start.
+
+I have tried cloning a new instance of the application and running it and it ran fine.
