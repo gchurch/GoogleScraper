@@ -6,14 +6,12 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     SearchComponent
   ],
   imports: [
@@ -22,8 +20,7 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'search', component: SearchComponent}
+      { path: '', component: SearchComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],

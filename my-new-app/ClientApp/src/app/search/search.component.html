@@ -1,5 +1,3 @@
-<h1>Search</h1>
-
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
     <p>Keywords: <input type="text" formControlName="keywords"/></p>
     <p>URL: <input type="text" formControlName="url"/></p>
@@ -13,7 +11,7 @@
 
     <ng-template #loading>
         <p *ngIf="firstSearchSubmitted == true">
-            Fetching search result from server...
+            Fetching search result from the server... This may take a few seconds...
         </p>
     </ng-template>
 </div>
