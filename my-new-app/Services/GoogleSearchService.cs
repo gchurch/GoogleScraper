@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Search.Services
+namespace UrlSearch.Services
 {
     public class GoogleSearchService : IGoogleSearchService
     {

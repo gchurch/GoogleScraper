@@ -6,14 +6,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Search.Services
+namespace UrlSearch.Services
 {
-    public class SearchService : ISearchService
+    public class UrlSearchService : IUrlSearchService
     {
 
         private readonly IGoogleSearchService _googleSearchService;
 
-        public SearchService(IGoogleSearchService googleSearchService)
+        public UrlSearchService(IGoogleSearchService googleSearchService)
         {
             _googleSearchService = googleSearchService;
         }

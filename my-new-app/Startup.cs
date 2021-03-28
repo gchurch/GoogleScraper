@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Search.Services;
+using UrlSearch.Services;
 
-namespace Search
+namespace UrlSearch
 {
     public class Startup
     {
@@ -27,7 +27,7 @@ namespace Search
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IUrlSearchService, UrlSearchService>();
             services.AddTransient<IGoogleSearchService, GoogleSearchService>();
         }
 

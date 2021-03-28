@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Search.Services;
+using UrlSearch.Services;
 using System.Collections.Generic;
 
 namespace UnitTests
 {
     [TestClass]
-    public class SearchServiceTests
+    public class UrlSearchServiceTests
     {
         private List<string> _searchResultUrls = new List<string>()
         {
@@ -20,19 +20,19 @@ namespace UnitTests
             "www.wikipedia.co.uk"
         };
         private string _keywords = "test test test";
-        private SearchService _searchService;
+        private UrlSearchService _urlSearchService;
 
-        public SearchServiceTests()
+        public UrlSearchServiceTests()
         {
-            _searchService = CreateSearchServiceForTesting();
+            _urlSearchService = CreateSearchServiceForTesting();
         }
 
-        private SearchService CreateSearchServiceForTesting()
+        private UrlSearchService CreateSearchServiceForTesting()
         {
             Mock<IGoogleSearchService> googleSearchServiceMock = new Mock<IGoogleSearchService>();
             googleSearchServiceMock.Setup(x => x.GetUrlsFromGoogleSearch(_keywords))
                 .Returns(_searchResultUrls);
-            SearchService searchService = new SearchService(googleSearchServiceMock.Object);
+            UrlSearchService searchService = new UrlSearchService(googleSearchServiceMock.Object);
             return searchService;
         }
 
@@ -43,7 +43,7 @@ namespace UnitTests
             string url = "www.twitter.com";
 
             // Act
-            string positions = _searchService.GetUrlPositions(_keywords, url);
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("4", positions);
@@ -57,7 +57,7 @@ namespace UnitTests
             string url = "www.infotrack.co.uk";
 
             // Act
-            string positions = _searchService.GetUrlPositions(_keywords, url);
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("2, 6, 7", positions);
@@ -70,7 +70,7 @@ namespace UnitTests
             string url = "www.gov.uk";
 
             // Act
-            string positions = _searchService.GetUrlPositions(_keywords, url);
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("0", positions);
@@ -83,7 +83,7 @@ namespace UnitTests
             string url = "www.facebook.com";
 
             // Act
-            string positions = _searchService.GetUrlPositions(_keywords, url);
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("1", positions);

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Search.Services
+namespace UrlSearch.Services
 {
-    public interface ISearchService
+    public interface IUrlSearchService
     {
         public string GetUrlPositions(string keywords, string url);
     }
