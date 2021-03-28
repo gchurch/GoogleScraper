@@ -1,7 +1,10 @@
-# Url Search
+# Url Search Tech Test
 
-I used .NET 5.0.
-I used Angular for the UI
+I have completed the development project.
+
+The application I created is an ASP.NET Core Web API and front-end Angular SPA.
+
+I have used .NET 5.0.
 
 To run:
-Press the IIS Express button in Visual Studio
+Press the start button in Visual Studio
