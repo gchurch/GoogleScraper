@@ -8,7 +8,7 @@ namespace UnitTests
     [TestClass]
     public class SearchServiceTests
     {
-        private List<string> searchResultUrls = new List<string>()
+        private List<string> _searchResultUrls = new List<string>()
         {
             "www.facebook.com",
             "www.infotrack.co.uk",
@@ -19,13 +19,19 @@ namespace UnitTests
             "www.infotrack.co.uk",
             "www.wikipedia.co.uk"
         };
-        private string keywords = "test test test";
+        private string _keywords = "test test test";
+        private SearchService _searchService;
+
+        public SearchServiceTests()
+        {
+            _searchService = CreateSearchServiceForTesting();
+        }
 
         private SearchService CreateSearchServiceForTesting()
         {
             Mock<IGoogleSearchService> googleSearchServiceMock = new Mock<IGoogleSearchService>();
-            googleSearchServiceMock.Setup(x => x.GetUrlsFromGoogleSearch(keywords))
-                .Returns(searchResultUrls);
+            googleSearchServiceMock.Setup(x => x.GetUrlsFromGoogleSearch(_keywords))
+                .Returns(_searchResultUrls);
             SearchService searchService = new SearchService(googleSearchServiceMock.Object);
             return searchService;
         }
@@ -34,11 +40,10 @@ namespace UnitTests
         public void GetUrlPositions_GivenUrlPresentMultipleTimesInList_ShouldReturnCommaSeparatedPositions()
         {
             // Arrange
-            SearchService searchService = CreateSearchServiceForTesting();
+            string url = "www.twitter.com";
 
             // Act
-            string url = "www.twitter.com";
-            string positions = searchService.GetUrlPositions(keywords, url);
+            string positions = _searchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("4", positions);
@@ -49,11 +54,10 @@ namespace UnitTests
         public void GetUrlPositions_GivenUrlPresentOnceInList_ShouldReturnSinglePositionWithNoComma()
         {
             // Arrange
-            SearchService searchService = CreateSearchServiceForTesting();
+            string url = "www.infotrack.co.uk";
 
             // Act
-            string url = "www.infotrack.co.uk";
-            string positions = searchService.GetUrlPositions(keywords, url);
+            string positions = _searchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("2, 6, 7", positions);
@@ -63,11 +67,10 @@ namespace UnitTests
         public void GetUrlPositions_GivenUrlNotPresentInList_ShouldReturn0()
         {
             // Arrange
-            SearchService searchService = CreateSearchServiceForTesting();
+            string url = "www.gov.uk";
 
             // Act
-            string url = "www.gov.uk";
-            string positions = searchService.GetUrlPositions(keywords, url);
+            string positions = _searchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("0", positions);
@@ -77,11 +80,10 @@ namespace UnitTests
         public void GetUrlPositions_GivenUrlThatIsFirstInTheList_ShouldReturn1Not0()
         {
             // Arrange
-            SearchService searchService = CreateSearchServiceForTesting();
+            string url = "www.facebook.com";
 
             // Act
-            string url = "www.facebook.com";
-            string positions = searchService.GetUrlPositions(keywords, url);
+            string positions = _searchService.GetUrlPositions(_keywords, url);
 
             // Assert
             Assert.AreEqual("1", positions);
