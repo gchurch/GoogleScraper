@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\my-new-app\UrlSearch.csproj" />
+    <ProjectReference Include="..\UrlSearch\UrlSearch.csproj" />
   </ItemGroup>
 
 </Project>
