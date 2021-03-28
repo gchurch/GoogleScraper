@@ -7,13 +7,13 @@
 </form>
 
 <div>
-    <div *ngIf="(stringResponse$ | async) as response; else loading">
-        <p>string response from server: {{response}}</p>
+    <div *ngIf="(searchResult$ | async) as result; else loading">
+        <p>Search result: {{result}}</p>
     </div>
 
-    <div>
-        <ng-template #loading>
-            Loading...
-        </ng-template>
-    </div>
+    <ng-template #loading>
+        <p *ngIf="firstSearchSubmitted == true">
+            Fetching search result from server...
+        </p>
+    </ng-template>
 </div>

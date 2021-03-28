@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
 
-  public intResponse$: Observable<number>;
-  public stringResponse$;
+  public searchResult$;
   public searchForm: FormGroup;
+  public firstSearchSubmitted: boolean = false;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -28,13 +28,18 @@ export class SearchComponent implements OnInit {
   }
 
   public onSearch(): void {
-    this.stringResponse$ = this.http.get(this.baseUrl + "api/search/string", 
-    {
-      responseType: 'text',
-      params: {
-        keywords: this.searchForm.value.keywords,
-        url: this.searchForm.value.url
+    console.log("Request sent");
+    this.firstSearchSubmitted = true;
+    this.searchForm.value.keywords = "beep";
+    this.searchResult$ = this.http.get(
+      this.baseUrl + "api/search/string", 
+      {
+        responseType: 'text',
+        params: {
+          keywords: this.searchForm.value.keywords,
+          url: this.searchForm.value.url
+        }
       }
-    });
+    );
   }
 }
