@@ -11,14 +11,14 @@ namespace my_new_app.Services
     public class SearchService : ISearchService
     {
 
-        private ChromeDriver _browser;
+        private ChromeDriver _browserDriver;
 
         public SearchService()
         {
-            _browser = CreateBrowser();
+            _browserDriver = CreateBrowserDriver();
         }
 
-        private ChromeDriver CreateBrowser()
+        private ChromeDriver CreateBrowserDriver()
         {
             var options = new ChromeOptions() { };
             options.AddArguments(new List<string>() { "headless", "disable-gpu" });
@@ -29,12 +29,18 @@ namespace my_new_app.Services
         public string GetUrlPositions(string keywords, string url)
         {
             List<string> resultUrls = GetUrlsFromGoogleSearch();
+            string positions = GetPositionsOfUrlInListOfUrls(url, resultUrls);
+            return positions;
+        }
+
+        private string GetPositionsOfUrlInListOfUrls(string url, List<string> urls)
+        {
             string positions = "";
-            for(int i = 0; i < resultUrls.Count; i++)
+            for (int i = 0; i < urls.Count; i++)
             {
-                if(resultUrls[i].Contains(url))
+                if (urls[i].Contains(url))
                 {
-                    if(positions == "")
+                    if (positions == "")
                     {
                         positions += (i + 1);
                     }
@@ -44,9 +50,9 @@ namespace my_new_app.Services
                     }
                 }
             }
-            if(positions == "")
+            if (positions == "")
             {
-                return "0";
+                positions = "0";
             }
             return positions;
         }
@@ -55,16 +61,16 @@ namespace my_new_app.Services
         {
             string fullUrl = "https://www.google.co.uk/search?num=100&q=land+registry+search";
 
-            _browser.Navigate().GoToUrl(fullUrl);
+            _browserDriver.Navigate().GoToUrl(fullUrl);
 
-            var urls = GetAllUrlResults();
+            var urls = ScrapeUrlResultsFromPage();
 
             return urls;
         }
 
-        private List<string> GetAllUrlResults()
+        private List<string> ScrapeUrlResultsFromPage()
         {
-            var cites = _browser.FindElementsByTagName("cite");
+            var cites = _browserDriver.FindElementsByTagName("cite");
             var urls = new List<string>();
             foreach (var cite in cites)
             {
