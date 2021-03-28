@@ -10,18 +10,18 @@ namespace UrlSearch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class UrlSearchController : ControllerBase
     {
 
         private readonly IUrlSearchService _searchService;
 
-        public SearchController(IUrlSearchService searchService)
+        public UrlSearchController(IUrlSearchService searchService)
         {
             _searchService = searchService;
         }
 
-        [HttpGet("string")]
-        public ActionResult<string> Search(string keywords, string url)
+        [HttpGet]
+        public ActionResult<string> Get(string keywords, string url)
         {
             string response =  _searchService.GetUrlPositions(keywords, url);
             return Ok(response);
