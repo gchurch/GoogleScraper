@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using my_new_app.Services;
+using Search.Services;
 using System.Collections.Generic;
 
 namespace UnitTests

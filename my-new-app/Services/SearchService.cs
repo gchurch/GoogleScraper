@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace my_new_app.Services
+namespace Search.Services
 {
     public class SearchService : ISearchService
     {
