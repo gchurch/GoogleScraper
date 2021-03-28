@@ -2,11 +2,11 @@
 
 I have completed the URL search project.
 
-The application I created is an ASP.NET Core Web API and front-end Angular SPA. In the UI, enter the search phrase and url you want to use and then press the search button.
+The application I created is an ASP.NET Core Web API and front-end Angular SPA. I use Selenium in order to get the HTML of the Google results pages so that I can scrape the URLs. I created a few services in order to separate concerns and make the code easier to unit test. I wrote a few unit tests.
 
-I have used .NET 5.0.
+I used .NET 5.0.
 
-To run:
+To run the application:
 Open the solution in Visual Studio and press start.
 
-I have tried cloning a new instance of the application and running it and it ran fine.
+In the UI, enter the search phrase and URL you want to use and then press the Search button.
