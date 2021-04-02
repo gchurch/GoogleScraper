@@ -1,5 +1,7 @@
 # Tech Test
 
+[![.NET](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml)
+
 I have completed the given task.
 
 The application I created is an ASP.NET Core Web API and front-end Angular SPA. I use Selenium in order to get the HTML of the Google results pages so that I can scrape the URLs. I created a few services in order to separate concerns and make the code easier to unit test. I wrote a few unit tests.
