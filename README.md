@@ -1,6 +1,6 @@
 # Tech Test
 
-[![.NET](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml)
 
 I have completed the given task.
 
