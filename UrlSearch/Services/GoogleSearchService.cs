@@ -9,28 +9,11 @@ namespace UrlSearch.Services
     public class GoogleSearchService : IGoogleSearchService
     {
 
-        private ChromeDriver _browserDriver;
+        private IBrowserService _browserService;
 
-        public GoogleSearchService()
+        public GoogleSearchService(IBrowserService browserService)
         {
-            CreateBrowserDriver();
-        }
-
-        ~GoogleSearchService()
-        {
-            QuitBrowserDriver();
-        }
-
-        private void CreateBrowserDriver()
-        {
-            var options = new ChromeOptions() { };
-            options.AddArguments(new List<string>() { "headless", "disable-gpu" });
-            _browserDriver = new ChromeDriver(options);
-        }
-
-        private void QuitBrowserDriver()
-        {
-            _browserDriver.Quit();
+            _browserService = browserService;
         }
 
         public List<string> GetUrlsFromGoogleSearch(string keywords)
@@ -44,7 +27,7 @@ namespace UrlSearch.Services
         {
             string fullUrl = CreateSearchUrl(keywords);
             Console.WriteLine(fullUrl);
-            _browserDriver.Navigate().GoToUrl(fullUrl);
+            _browserService.NavigateToUrl(fullUrl);
         }
 
         private string CreateSearchUrl(string keywords)
@@ -56,13 +39,13 @@ namespace UrlSearch.Services
 
         private List<string> ScrapeUrlResultsFromPage()
         {
-            var cites = _browserDriver.FindElementsByTagName("cite");
+            List<string> cites = _browserService.ScrapeTextInCiteTags();
             var urls = new List<string>();
             foreach (var cite in cites)
             {
-                if (cite.Text != "")
+                if (cite != "")
                 {
-                    urls.Add(cite.Text);
+                    urls.Add(cite);
                 }
             }
             return urls;

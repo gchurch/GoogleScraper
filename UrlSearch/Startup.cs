@@ -29,6 +29,7 @@ namespace UrlSearch
 
             services.AddTransient<IUrlSearchService, UrlSearchService>();
             services.AddTransient<IGoogleSearchService, GoogleSearchService>();
+            services.AddTransient<IBrowserService, BrowserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +71,8 @@ namespace UrlSearch
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
