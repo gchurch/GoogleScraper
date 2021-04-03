@@ -4,7 +4,7 @@ using UrlSearch.Services;
 using System.Collections.Generic;
 using UrlSearch.Interfaces;
 
-namespace UnitTests
+namespace UnitTests.Services
 {
     [TestClass]
     public class UrlSearchServiceTests
