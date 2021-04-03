@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using UrlSearch.Services;
+using UrlSearch.Interfaces;
 
 namespace FunctionalTests
 {

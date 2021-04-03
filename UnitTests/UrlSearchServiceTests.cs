@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using UrlSearch.Services;
 using System.Collections.Generic;
+using UrlSearch.Interfaces;
 
 namespace UnitTests
 {
