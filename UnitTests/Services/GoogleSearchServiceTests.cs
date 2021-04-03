@@ -66,7 +66,7 @@ namespace UnitTests.Services
             var urlResults = googleSearchService.GetUrlsFromGoogleSearch(keywords);
 
             // Assert
-            Assert.AreEqual(expectedUrls[0], urlResults[0]);
+            CollectionAssert.AreEqual(expectedUrls, urlResults);
         }
     }
 }
