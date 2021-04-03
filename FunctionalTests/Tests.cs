@@ -16,6 +16,10 @@ namespace FunctionalTests
         [DataRow("api/UrlSearch?keywords=test&url=www.infotrack.co.uk", "2, 6, 7")]
         [DataRow("api/UrlSearch?keywords=test&url=www.google.com", "3")]
         [DataRow("api/UrlSearch?keywords=test&url=www.instagram.com", "0")]
+        [DataRow("api/UrlSearch", "0")]
+        [DataRow("api/UrlSearch?keywords=&url=www.instagram.com", "0")]
+        [DataRow("api/UrlSearch?keywords=test&url=", "0")]
+        [DataRow("api/UrlSearch?keywords=&url=", "0")]
         public async Task TestMethod1(string url, string expectedResult)
         {
             // Arrange
@@ -28,6 +32,5 @@ namespace FunctionalTests
             string responseString = await response.Content.ReadAsStringAsync();
             Assert.AreEqual(expectedResult, responseString);
         }
-
     }
 }
