@@ -18,13 +18,21 @@ namespace FunctionalTests
             return new List<string>()
             {
                 "www.facebook.com",
-                "www.infotrack.co.uk",
+                "",
+                "www.infotrack.co.uk > info",
+                "",
                 "www.google.com",
-                "www.twitter.com",
+                "",
+                "www.twitter.com > profile",
+                "",
                 "www.amazon.com",
+                "",
                 "www.infotrack.co.uk",
+                "",
                 "www.infotrack.co.uk",
-                "www.wikipedia.co.uk"
+                "",
+                "www.wikipedia.co.uk > search",
+                ""
             };
         }
     }
