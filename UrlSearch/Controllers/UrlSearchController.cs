@@ -24,8 +24,15 @@ namespace UrlSearch.Controllers
         [HttpGet]
         public ActionResult<string> Get(string keywords, string url)
         {
-            string response =  _searchService.GetUrlPositions(keywords, url);
-            return Ok(response);
+            if (keywords != null && url != null)
+            {
+                string response = _searchService.GetUrlPositions(keywords, url);
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest("0");
+            }
         }
     }
 }
