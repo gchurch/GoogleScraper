@@ -46,20 +46,26 @@ namespace UrlSearch.Services
             {
                 if (cite != "")
                 {
-                    var firstSpaceIndex = cite.IndexOf(" ");
-                    string firstString;
-                    if (firstSpaceIndex > 0)
-                    {
-                        firstString = cite.Substring(0, firstSpaceIndex);
-                    }
-                    else
-                    {
-                        firstString = cite;
-                    }
-                    urls.Add(firstString);
+                    string url = extractUrlFromCiteText(cite);
+                    urls.Add(url);
                 }
             }
             return urls;
+        }
+
+        private string extractUrlFromCiteText(string citeText)
+        {
+            var firstSpaceIndex = citeText.IndexOf(" ");
+            string url;
+            if (firstSpaceIndex > 0)
+            {
+                url = citeText.Substring(0, firstSpaceIndex);
+            }
+            else
+            {
+                url = citeText;
+            }
+            return url;
         }
     }
 }
