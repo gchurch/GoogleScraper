@@ -31,7 +31,7 @@ namespace UrlSearch.Services
             string positions = "";
             for (int i = 0; i < urls.Count; i++)
             {
-                if (urls[i].Contains(url))
+                if (urls[i] == url)
                 {
                     if (positions == "")
                     {
