@@ -89,18 +89,5 @@ namespace UnitTests.Services
             // Assert
             Assert.AreEqual("1", positions);
         }
-
-        [TestMethod]
-        public void GetUrlPositions_GivenAUrlThatIsASubstringOfAUrlInTheList_ShouldReturn0()
-        {
-            // Arrange
-            string url = "facebook";
-
-            // Act
-            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
-
-            // Assert
-            Assert.AreEqual("0", positions);
-        }
     }
 }
