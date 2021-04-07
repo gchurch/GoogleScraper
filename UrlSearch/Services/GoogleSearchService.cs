@@ -26,44 +26,43 @@ namespace UrlSearch.Services
 
         private void MakeGoogleSearch(string keywords)
         {
-            string fullUrl = CreateSearchUrl(keywords);
-            Console.WriteLine(fullUrl);
-            _browserService.NavigateToUrl(fullUrl);
+            string url = CreateGoogleSearchUrl(keywords);
+            _browserService.NavigateToUrl(url);
         }
 
-        private string CreateSearchUrl(string keywords)
+        private string CreateGoogleSearchUrl(string keywords)
         {
             string keywordsWithSpacesReplacedByPluses = keywords.Replace(" ", "+");
-            string fullUrl = "https://www.google.co.uk/search?num=100&q=" + keywordsWithSpacesReplacedByPluses;
-            return fullUrl;
+            string url = "https://www.google.co.uk/search?num=100&q=" + keywordsWithSpacesReplacedByPluses;
+            return url;
         }
 
         private List<string> ScrapeUrlResultsFromPage()
         {
-            List<string> cites = _browserService.ScrapeTextInCiteTags();
+            List<string> citeTagTexts = _browserService.ScrapeTextInCiteTags();
             var urls = new List<string>();
-            foreach (var cite in cites)
+            foreach (string citeTagText in citeTagTexts)
             {
-                if (cite != "")
+                if (citeTagText != "")
                 {
-                    string url = extractUrlFromCiteText(cite);
+                    string url = ExtractUrlFromCiteText(citeTagText);
                     urls.Add(url);
                 }
             }
             return urls;
         }
 
-        private string extractUrlFromCiteText(string citeText)
+        private string ExtractUrlFromCiteText(string citeTagText)
         {
-            var firstSpaceIndex = citeText.IndexOf(" ");
+            var firstSpaceIndex = citeTagText.IndexOf(" ");
             string url;
             if (firstSpaceIndex > 0)
             {
-                url = citeText.Substring(0, firstSpaceIndex);
+                url = citeTagText.Substring(0, firstSpaceIndex);
             }
             else
             {
-                url = citeText;
+                url = citeTagText;
             }
             return url;
         }
