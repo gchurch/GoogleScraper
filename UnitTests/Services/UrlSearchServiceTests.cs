@@ -89,5 +89,18 @@ namespace UnitTests.Services
             // Assert
             Assert.AreEqual("1", positions);
         }
+
+        [TestMethod]
+        public void GetUrlPositions_GivenUrlThatIsASubstringOfOneInTheList_ShouldReturnThePosition()
+        {
+            // Arrange
+            string url = "amazon";
+
+            // Act
+            string positions = _urlSearchService.GetUrlPositions(_keywords, url);
+
+            // Assert
+            Assert.AreEqual("5", positions);
+        }
     }
 }
