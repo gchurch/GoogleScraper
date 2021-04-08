@@ -1,17 +1,32 @@
+
+<p>This application takes a search phrase and a URL. A Google search is made with the search phrase for the first 100 results. 
+    The positions that the given url occurs in the search results is then displayed in a comma separated list. 
+    For example, "1, 10, 33" means that the url is present in the 1st 10th and 33rd search result. 
+    If the url is not present in any of the search results then the output is "0".</p>
+
+
 <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-    <p>Google search phrase: <input type="text" formControlName="keywords"/></p>
-    <p>URL: <input type="text" formControlName="url"/></p>
-    <button type="submit" [disabled]="!searchForm.valid">Search</button>
+    <div>
+        Google search phrase: <input type="text" formControlName="keywords"/>
+    </div>
+    <div>
+        URL: <input type="text" formControlName="url"/>
+    </div>
+    <div>
+        <button type="submit" [disabled]="!searchForm.valid">Search</button>
+    </div>
 </form>
 
 <div>
     <div *ngIf="(searchResult$ | async) as result; else loading">
-        <p>In the first 100 search results, the given URL appears at positions: {{result}}</p>
+        <p>Positions: <span [ngClass]="{'redText': result == '0', 'greenText': result != '0'}">{{result}}</span></p>
     </div>
 
     <ng-template #loading>
-        <p *ngIf="firstSearchSubmitted == true">
-            Fetching search results from the server... This may take a few seconds...
-        </p>
+        <div>
+            <p *ngIf="firstSearchSubmitted == true">
+                Fetching search results from the server... This may take a few seconds...
+            </p>
+        </div>
     </ng-template>
 </div>

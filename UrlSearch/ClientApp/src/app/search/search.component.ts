@@ -41,4 +41,13 @@ export class SearchComponent implements OnInit {
       }
     );
   }
+
+  public searchButtonEnabled(): boolean {
+    if(this.searchForm.valid && (!!this.searchResult$ || this.firstSearchSubmitted == false)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
