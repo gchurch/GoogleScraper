@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlSearch", "UrlSearch\UrlSearch.csproj", "{80AD37CC-82B5-4538-93E0-D185A26E1267}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlPositionSearch", "UrlSearch\UrlPositionSearch.csproj", "{80AD37CC-82B5-4538-93E0-D185A26E1267}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{9B34ACC1-46C2-454A-9FBC-6F4CD6141116}"
 EndProject

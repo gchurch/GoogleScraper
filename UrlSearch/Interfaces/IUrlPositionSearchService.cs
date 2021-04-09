@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace UrlSearch.Interfaces
 {
-    public interface IUrlSearchService
+    public interface IUrlPositionSearchService
     {
         public string GetUrlPositions(string keywords, string url);
     }

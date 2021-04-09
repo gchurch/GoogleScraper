@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
     console.log("Request sent");
     this.firstSearchSubmitted = true;
     this.searchResult$ = this.http.get(
-      this.baseUrl + "api/UrlSearch", 
+      this.baseUrl + "api/UrlPositionSearch", 
       {
         responseType: 'text',
         params: {

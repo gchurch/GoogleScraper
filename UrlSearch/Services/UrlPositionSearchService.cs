@@ -9,12 +9,12 @@ using UrlSearch.Interfaces;
 
 namespace UrlSearch.Services
 {
-    public class UrlSearchService : IUrlSearchService
+    public class UrlPositionSearchService : IUrlPositionSearchService
     {
 
         private readonly IGoogleSearchService _googleSearchService;
 
-        public UrlSearchService(IGoogleSearchService googleSearchService)
+        public UrlPositionSearchService(IGoogleSearchService googleSearchService)
         {
             _googleSearchService = googleSearchService;
         }

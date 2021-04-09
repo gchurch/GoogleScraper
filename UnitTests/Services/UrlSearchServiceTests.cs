@@ -21,20 +21,20 @@ namespace UnitTests.Services
             "www.wikipedia.co.uk"
         };
         private string _keywords = "test test test";
-        private UrlSearchService _urlSearchService;
+        private UrlPositionSearchService _urlSearchService;
 
         public UrlSearchServiceTests()
         {
-            _urlSearchService = CreateSearchServiceForTesting();
+            _urlSearchService = CreateUrlPositionSearchServiceForTesting();
         }
 
-        private UrlSearchService CreateSearchServiceForTesting()
+        private UrlPositionSearchService CreateUrlPositionSearchServiceForTesting()
         {
             Mock<IGoogleSearchService> googleSearchServiceMock = new Mock<IGoogleSearchService>();
             googleSearchServiceMock.Setup(x => x.GetUrlsFromGoogleSearch(_keywords))
                 .Returns(_searchResultUrls);
-            UrlSearchService searchService = new UrlSearchService(googleSearchServiceMock.Object);
-            return searchService;
+            UrlPositionSearchService urlPositionSearchService = new UrlPositionSearchService(googleSearchServiceMock.Object);
+            return urlPositionSearchService;
         }
 
         [TestMethod]

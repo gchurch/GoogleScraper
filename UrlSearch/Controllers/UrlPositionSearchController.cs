@@ -11,22 +11,22 @@ namespace UrlSearch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UrlSearchController : ControllerBase
+    public class UrlPositionSearchController : ControllerBase
     {
 
-        private readonly IUrlSearchService _searchService;
+        private readonly IUrlPositionSearchService _urlPositionSearchService;
 
-        public UrlSearchController(IUrlSearchService searchService)
+        public UrlPositionSearchController(IUrlPositionSearchService urlPositionSearchService)
         {
-            _searchService = searchService;
+            _urlPositionSearchService = urlPositionSearchService;
         }
 
         [HttpGet]
-        public ActionResult<string> Get(string keywords, string url)
+        public ActionResult<string> UrlPositionSearch(string keywords, string url)
         {
             if (keywords != null && url != null)
             {
-                string response = _searchService.GetUrlPositions(keywords, url);
+                string response = _urlPositionSearchService.GetUrlPositions(keywords, url);
                 return Ok(response);
             }
             else

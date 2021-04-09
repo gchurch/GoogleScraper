@@ -28,7 +28,7 @@ namespace UrlSearch
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddTransient<IUrlSearchService, UrlSearchService>();
+            services.AddTransient<IUrlPositionSearchService, UrlPositionSearchService>();
             services.AddTransient<IGoogleSearchService, GoogleSearchService>();
             services.AddTransient<IBrowserService, BrowserService>();
         }
