@@ -10,7 +10,7 @@ namespace UnitTests.Services
     public class GoogleSearchServiceTests
     {
 
-        private List<string> citeText = new List<string>()
+        private List<string> citeTextExample = new List<string>()
         {
             "https://www.gov.uk > ... > Owning and renting a property",
             "",
@@ -36,7 +36,7 @@ namespace UnitTests.Services
             ""
         };
 
-        private List<string> expectedUrls = new List<string>()
+        private List<string> expectedUrlsExample = new List<string>()
         {
             "https://www.gov.uk",
             "https://www.gov.uk",
@@ -58,7 +58,7 @@ namespace UnitTests.Services
             // Arrange
             Mock<IBrowserService> browserServiceMock = new Mock<IBrowserService>();
             browserServiceMock.Setup(bs => bs.ScrapeTextInCiteTags())
-                .Returns(citeText);
+                .Returns(citeTextExample);
             GoogleSearchService googleSearchService = new GoogleSearchService(browserServiceMock.Object);
             var keywords = "test";
 
@@ -66,7 +66,27 @@ namespace UnitTests.Services
             var urlResults = googleSearchService.GetUrlsFromGoogleSearch(keywords);
 
             // Assert
+            CollectionAssert.AreEqual(expectedUrlsExample, urlResults);
+        }
+
+        [TestMethod]
+        public void GetUrlsFromGoogleSearch_WhenBrowserServiceThrowsAnException_ShouldReturnEmptyList()
+        {
+            // Arrange
+            Mock<IBrowserService> browserServiceMock = new Mock<IBrowserService>();
+            string url = "www.whatever.com";
+            browserServiceMock.Setup(bs => bs.NavigateToUrl(url))
+                .Throws(new System.Exception());
+            GoogleSearchService googleSearchService = new GoogleSearchService(browserServiceMock.Object);
+
+            // Act
+            var keywords = "test";
+            var urlResults = googleSearchService.GetUrlsFromGoogleSearch(keywords);
+
+            // Assert
+            var expectedUrls = new List<string>();
             CollectionAssert.AreEqual(expectedUrls, urlResults);
+            Assert.AreEqual(0, urlResults.Count);
         }
     }
 }
