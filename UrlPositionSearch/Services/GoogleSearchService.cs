@@ -19,6 +19,19 @@ namespace UrlSearch.Services
 
         public List<string> GetUrlsFromGoogleSearch(string keywords)
         {
+            try
+            {
+                return TryToGetUrlsFromGoogleSearch(keywords);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                return new List<string>();
+            }
+        }
+
+        private List<string> TryToGetUrlsFromGoogleSearch(string keywords)
+        {
             MakeGoogleSearch(keywords);
             var urls = ScrapeUrlResultsFromPage();
             return urls;
