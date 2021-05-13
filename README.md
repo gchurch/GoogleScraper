@@ -1,4 +1,4 @@
-# InfoTrack Tech Test
+# Google Scraper
 
 [![.NET](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/gchurch/TechTest/actions/workflows/dotnet.yml)
 
